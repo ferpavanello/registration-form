@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, TextField, Switch, FormControlLabel } from "@material-ui/core";
+import React from 'react'
+import { Button, TextField, Switch, FormControlLabel } from '@material-ui/core'
 
 function RegistrationForm() {
   return (
@@ -37,7 +37,7 @@ function RegistrationForm() {
         Submit
       </Button>
     </form>
-  );
+  )
 }
 
-export default RegistrationForm;
+export default RegistrationForm
