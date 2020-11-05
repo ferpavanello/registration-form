@@ -11,10 +11,14 @@ class App extends Component {
         <Typography variant="h3" component="h1" align="center">
           Registration Form
         </Typography>
-        <RegistrationForm />
+        <RegistrationForm formSubmit={formSubmit} />
       </Container>
     )
   }
+}
+
+function formSubmit (data) {
+  console.log(data)
 }
 
 export default App
