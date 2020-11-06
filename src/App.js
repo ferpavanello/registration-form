@@ -11,7 +11,7 @@ class App extends Component {
         <Typography variant="h3" component="h1" align="center">
           Registration Form
         </Typography>
-        <RegistrationForm formSubmit={formSubmit} />
+        <RegistrationForm formSubmit={formSubmit} validateCpf={validateCpf} />
       </Container>
     )
   }
@@ -19,6 +19,13 @@ class App extends Component {
 
 function formSubmit (data) {
   console.log(data)
+}
+
+function validateCpf (value) {
+  if (value.length !== 11) {
+    return { isValid: false, message: 'CPF must be 11 digits.' }
+  }
+  return { isValid: true, message: '' }
 }
 
 export default App
