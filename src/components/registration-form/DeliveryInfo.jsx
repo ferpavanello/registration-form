@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TextField, Button } from '@material-ui/core'
 
-function DeliveryInfo() {
+function DeliveryInfo({ formSubmit }) {
+  const [cep, setCep] = useState('')
+  const [address, setAddress] = useState('')
+  const [numberAddress, setNumberAddress] = useState('')
+  const [state, setState] = useState('')
+  const [city, setCity] = useState('')
+
   return (
-    <form>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault()
+        formSubmit({ cep, address, numberAddress, state, city })
+      }}
+    >
       <TextField
+        value={cep}
+        onChange={(event) => {
+          setCep(event.target.value)
+        }}
         id="cep"
         label="CEP"
         type="number"
@@ -12,6 +27,10 @@ function DeliveryInfo() {
         margin="normal"
       />
       <TextField
+        value={address}
+        onChange={(event) => {
+          setAddress(event.target.value)
+        }}
         id="address"
         label="Address"
         type="text"
@@ -20,6 +39,10 @@ function DeliveryInfo() {
         fullWidth
       />
       <TextField
+        value={numberAddress}
+        onChange={(event) => {
+          setNumberAddress(event.target.value)
+        }}
         id="numberAddress"
         label="Number"
         type="number"
@@ -27,6 +50,10 @@ function DeliveryInfo() {
         margin="normal"
       />
       <TextField
+        value={state}
+        onChange={(event) => {
+          setState(event.target.value)
+        }}
         id="state"
         label="State"
         type="text"
@@ -34,6 +61,10 @@ function DeliveryInfo() {
         margin="normal"
       />
       <TextField
+        value={city}
+        onChange={(event) => {
+          setCity(event.target.value)
+        }}
         id="city"
         label="City"
         type="text"
