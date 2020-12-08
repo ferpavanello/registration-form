@@ -1,18 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Button, TextField, Switch, FormControlLabel } from '@material-ui/core'
+import FormValidations from '../../contexts/formValidations'
 
-function PersonalInfo({ formSubmit, validateCpf }) {
+function PersonalInfo({ formSubmit }) {
   const [name, setName] = useState('')
   const [lastName, setLastName] = useState('')
   const [cpf, setCpf] = useState('')
   const [promotions, setPromotions] = useState(true)
   const [newsletter, setNewsletter] = useState(false)
-  const [error, setError] = useState({ cpf: { isValid: true, message: '' } })
+  const [errors, setErrors] = useState({
+    cpf: { isValid: true, message: '' },
+    name: { isValid: true, message: '' },
+  })
+
+  const validations = useContext(FormValidations)
+
+  function validateFields(event) {
+    const { name, value } = event.target
+    const newState = { ...errors }
+    newState[name] = validations[name](value)
+    setErrors(newState)
+  }
+
+  function isValidForm () {
+    return Object.keys(errors).every(key => {
+      return errors[key].isValid
+    })
+  }
+
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault()
-        formSubmit({ name, lastName, cpf, promotions, newsletter })
+        if (isValidForm()) {
+          formSubmit({ name, lastName, cpf, promotions, newsletter })
+        }
       }}
     >
       <TextField
@@ -20,7 +42,11 @@ function PersonalInfo({ formSubmit, validateCpf }) {
         onChange={(event) => {
           setName(event.target.value)
         }}
+        onBlur={validateFields}
+        error={!errors.name.isValid}
+        helperText={errors.name.message}
         id="name"
+        name="name"
         label="Name"
         variant="outlined"
         margin="normal"
@@ -32,6 +58,7 @@ function PersonalInfo({ formSubmit, validateCpf }) {
           setLastName(event.target.value)
         }}
         id="lastName"
+        name="lastname"
         label="Last Name"
         variant="outlined"
         margin="normal"
@@ -42,13 +69,11 @@ function PersonalInfo({ formSubmit, validateCpf }) {
         onChange={(event) => {
           setCpf(event.target.value)
         }}
-        onBlur={(event) => {
-          const validation = validateCpf(event.target.value)
-          setError({ cpf: validation })
-        }}
-        error={!error.cpf.isValid}
-        helperText={error.cpf.message}
+        onBlur={validateFields}
+        error={!errors.cpf.isValid}
+        helperText={errors.cpf.message}
         id="cpf"
+        name="cpf"
         label="CPF"
         variant="outlined"
         margin="normal"

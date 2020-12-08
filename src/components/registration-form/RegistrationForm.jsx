@@ -4,12 +4,12 @@ import PersonalInfo from './PersonalInfo'
 import UserInfo from './UserInfo'
 import { Step, Stepper, StepLabel, Typography } from '@material-ui/core'
 
-function RegistrationForm({ formSubmit, validateCpf }) {
+function RegistrationForm({ formSubmit }) {
   const [actualStage, setActualStage] = useState(0)
   const [formData, setFormData] = useState({})
   const forms = [
     <UserInfo formSubmit={concatData} />,
-    <PersonalInfo formSubmit={concatData} validateCpf={validateCpf} />,
+    <PersonalInfo formSubmit={concatData} />,
     <DeliveryInfo formSubmit={concatData} />,
     <Typography>Thanks for the registration</Typography>,
   ]

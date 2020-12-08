@@ -21,6 +21,7 @@ function DeliveryInfo({ formSubmit }) {
           setCep(event.target.value)
         }}
         id="cep"
+        name="cep"
         label="CEP"
         type="number"
         variant="outlined"
@@ -32,6 +33,7 @@ function DeliveryInfo({ formSubmit }) {
           setAddress(event.target.value)
         }}
         id="address"
+        name="address"
         label="Address"
         type="text"
         variant="outlined"
@@ -44,6 +46,7 @@ function DeliveryInfo({ formSubmit }) {
           setNumberAddress(event.target.value)
         }}
         id="numberAddress"
+        name="numberAddress"
         label="Number"
         type="number"
         variant="outlined"
@@ -55,6 +58,7 @@ function DeliveryInfo({ formSubmit }) {
           setState(event.target.value)
         }}
         id="state"
+        name="state"
         label="State"
         type="text"
         variant="outlined"
@@ -66,6 +70,7 @@ function DeliveryInfo({ formSubmit }) {
           setCity(event.target.value)
         }}
         id="city"
+        name="city"
         label="City"
         type="text"
         variant="outlined"
